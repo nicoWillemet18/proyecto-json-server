@@ -1,15 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Cursos from './components/screens/CursosScreen';
-import Estudiantes from './components/screens/EstudiantesScreen';
+import EstudiantesScreen from './components/screens/EstudiantesScreen';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Cursos />} />
-        <Route path="/estudiantes" element={<Estudiantes />} />
+        <Route path="/estudiantes" element={<EstudiantesScreen />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

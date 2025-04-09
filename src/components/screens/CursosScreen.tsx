@@ -1,21 +1,35 @@
 import { useEffect, useState } from 'react';
-import { getUsuarios } from '../../http/api';
+import { getCursos } from '../../http/api';
+import CursoCard from '../../components/ui/CursoCard';
+import styles from './Cursos.module.css'; 
+
+interface Estudiante {
+  id: number;
+  nombre: string;
+  edad: number;
+}
+
+interface Curso {
+  id: number;
+  nombre: string;
+  estudiantes: Estudiante[];
+}
 
 const Cursos = () => {
-  const [usuarios, setUsuarios] = useState<{ id: number; nombre: string }[]>([]);
+  const [cursos, setCursos] = useState<Curso[]>([]);
 
   useEffect(() => {
-    getUsuarios().then(setUsuarios);
+    getCursos().then(setCursos);
   }, []);
 
   return (
-    <div>
-      <h1>Usuarios</h1>
-      <ul>
-        {usuarios.map((u) => (
-          <li key={u.id}>{u.nombre}</li>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Cursos</h1>
+      <div className={styles.grid}>
+        {cursos.map((curso) => (
+          <CursoCard key={curso.id} curso={curso} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
